@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/three.min.js"></script>
+    <script src="js/OrbitControls.js"></script>
+</head>
+<body>
+
+<script id="vertexShader" type="x-shader/x-vertex">
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+    varying vec3 vPos;
+    varying vec3 vNormal;
+    void main() {
+      vPos = (modelMatrix * vec4(position, 1.0 )).xyz;
+      vNormal = normalMatrix * normal;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.0);
+    }
+</script>
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+// uniform vec3 diffuse;
+// varying vec3 vPos;
+// varying vec3 vNormal;
+
+void main() {
+    //vec2 st = gl_FragCoord.xy/u_resolution;
+    //gl_FragColor = vec4(st.x,st.y,0.0,1.0);
+
+	gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+}
+</script>
+
+<main class="main" id="main"></main>
+
+</body>
+<script src="js/script.js"></script>
+</html>
